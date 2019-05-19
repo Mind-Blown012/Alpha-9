@@ -1,5 +1,16 @@
+# Folders
+[Bb]in
+.vs
+
 # Prerequisites
 *.d
+
+# Enviornment Files
+## Visual Studio
+*.sln
+*.vcxproj*
+## GNU Make
+[Mm]ake*
 
 # Compiled Object files
 *.slo

@@ -1,0 +1,4 @@
+All objects/instances relating to the "Alpha-9" Game engine will be contained within the "Alpha9" namespace.
+All objects/instances of or relating to mathamatics will be contained directly in the "Mathf" namespace.
+
+Any functions / variables that the end-user will be interacting with CamelCase
