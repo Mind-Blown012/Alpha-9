@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A4DD5FA7-907F-8A7D-793A-9ED1657B11CE}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Alpha9</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\bin\Debug-x86_64\Alpha9\</OutDir>
+    <IntDir>..\bin\int\Debug-x86_64\Alpha9\</IntDir>
+    <TargetName>Alpha9</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>..\bin\Release-x86_64\Alpha9\</OutDir>
+    <IntDir>..\bin\int\Release-x86_64\Alpha9\</IntDir>
+    <TargetName>Alpha9</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>a9pch.hpp</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;A9_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;A9_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>core;main;platform;third-party\Glad\include;third-party\spdlog\include;third-party\GLFW\include;third-party\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:libcmt.lib %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Debug-x86_64\Alpha9\Alpha9.lib\ (xcopy /Q /E /Y /I ..\bin\Debug-x86_64\Alpha9\Alpha9.lib "..\bin\Debug-x86_64\Test\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-x86_64\Alpha9\Alpha9.lib "..\bin\Debug-x86_64\Test\" &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>a9pch.hpp</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;A9_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;A9_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>core;main;platform;third-party\Glad\include;third-party\spdlog\include;third-party\GLFW\include;third-party\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:libcmt.lib %(AdditionalOptions)</AdditionalOptions>
+    </Lib>
+    <PostBuildEvent>
+      <Command>IF EXIST ..\bin\Release-x86_64\Alpha9\Alpha9.lib\ (xcopy /Q /E /Y /I ..\bin\Release-x86_64\Alpha9\Alpha9.lib "..\bin\Release-x86_64\Test\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-x86_64\Alpha9\Alpha9.lib "..\bin\Release-x86_64\Test\" &gt; nul)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="core\a9pch.hpp" />
+    <ClInclude Include="core\application.hpp" />
+    <ClInclude Include="core\components\component.hpp" />
+    <ClInclude Include="core\events\events.hpp" />
+    <ClInclude Include="core\events\input_events.inl" />
+    <ClInclude Include="core\events\window_events.inl" />
+    <ClInclude Include="core\key_codes.inl" />
+    <ClInclude Include="core\logger\logger.hpp" />
+    <ClInclude Include="core\logger\logging_macros.hpp" />
+    <ClInclude Include="core\macros.hpp" />
+    <ClInclude Include="core\rendering\buffers.hpp" />
+    <ClInclude Include="core\rendering\camera.hpp" />
+    <ClInclude Include="core\rendering\context.hpp" />
+    <ClInclude Include="core\rendering\renderer.hpp" />
+    <ClInclude Include="core\rendering\shader.hpp" />
+    <ClInclude Include="core\rendering\vertex_array.hpp" />
+    <ClInclude Include="core\rendering\window.hpp" />
+    <ClInclude Include="core\time.hpp" />
+    <ClInclude Include="core\transform.hpp" />
+    <ClInclude Include="main\Alpha9.h" />
+    <ClInclude Include="main\game_base.hpp" />
+    <ClInclude Include="main\main.hpp" />
+    <ClInclude Include="platform\openGL\gl_buffers.hpp" />
+    <ClInclude Include="platform\openGL\gl_context.hpp" />
+    <ClInclude Include="platform\openGL\gl_vertexArray.hpp" />
+    <ClInclude Include="platform\windows\windows_input.hpp" />
+    <ClInclude Include="platform\windows\windows_window.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="core\a9pch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="core\application.cpp" />
+    <ClCompile Include="core\components\component.cpp" />
+    <ClCompile Include="core\events\events.cpp" />
+    <ClCompile Include="core\logger\logger.cpp" />
+    <ClCompile Include="core\rendering\buffers.cpp" />
+    <ClCompile Include="core\rendering\camera.cpp" />
+    <ClCompile Include="core\rendering\renderer.cpp" />
+    <ClCompile Include="core\rendering\shader.cpp" />
+    <ClCompile Include="core\rendering\vertex_array.cpp" />
+    <ClCompile Include="core\rendering\window.cpp" />
+    <ClCompile Include="core\time.cpp" />
+    <ClCompile Include="core\transform.cpp" />
+    <ClCompile Include="platform\openGL\gl_buffers.cpp" />
+    <ClCompile Include="platform\openGL\gl_context.cpp" />
+    <ClCompile Include="platform\openGL\gl_vertexArray.cpp" />
+    <ClCompile Include="platform\windows\windows_input.cpp" />
+    <ClCompile Include="platform\windows\windows_window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="core\events\core_events.inl" />
+    <None Include="main\Alpha9" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="third-party\GLFW\GLFW.vcxproj">
+      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="third-party\Glad\GLAD.vcxproj">
+      <Project>{5D4A857C-4981-860D-F26D-6C10DE83020F}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

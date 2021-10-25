@@ -1,128 +1,139 @@
-workspace "Alpha 9"
+workspace "Alpha9"
+	startproject "Test"
+
 	architecture "x64"
-	filename "Alpha-9"
-	startproject "Sandbox"
-	configurations { "Debug", "Release" }
+	configurations 
+	{ 
+		"Debug", 
+		"Release" 
+	}
 
-outputdir = "%{cfg.buildcfg}-%{cfg.system}"
+outputDir = "%{cfg.buildcfg}-%{cfg.architecture}"
 
-include "Alpha-9/third-party/GLFW"
-include "Alpha-9/third-party/Glad"
+include "Alpha9/third-party/GLFW"
+include "Alpha9/third-party/Glad"
 
-project "Alpha-9"
-	location "Alpha-9"
-	kind "SharedLib"
+project "Alpha9"
+	kind "StaticLib"
 	language "C++"
-	staticruntime "off"
-
-	targetdir ("bin/" .. outputdir .. "/Alpha-9")
-	objdir ("bin/int/" .. outputdir .. "/Alpha-9")
+	cppdialect "C++17"
+	staticruntime "on"
 
 	pchheader "a9pch.hpp"
-	pchsource "a9pch.cpp"
+	pchsource("%{prj.name}/core/a9pch.cpp")
+
+	location "Alpha9"
+
+	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
+	objdir ("bin/int/" .. outputDir .. "/%{prj.name}")
 
 	files
 	{
-		"%{prj.name}/core/Alpha-9",
-		"%{prj.name}/core/**.h*",
-		"%{prj.name}/core/**.c*",
-		"%{prj.name}/platform/**.h*",
-		"%{prj.name}/platform/**.c*",
-		"%{prj.name}/third-party/glm/glm/**.hpp",
-		"%{prj.name}/third-party/glm/glm/**.inl"
+		"%{prj.name}/core/**.hpp",
+		"%{prj.name}/core/**.cpp",
+		"%{prj.name}/platform/**.hpp",
+		"%{prj.name}/platform/**.cpp",
+		"%{prj.name}/main/**.hpp",
+		"%{prj.name}/main/**.cpp",
+		"%{prj.name}/main/Alpha9",
+		"%{prj.name}/main/Alpha9.h",
+		"%{prj.name}/core/key_codes.inl",
+		"%{prj.name}/core/events/input_events.inl",
+		"%{prj.name}/core/events/window_events.inl",
 	}
+
 	includedirs
 	{
 		"%{prj.name}/core",
+		"%{prj.name}/main",
 		"%{prj.name}/platform",
-		"%{prj.name}/third-party/GLFW/include",
 		"%{prj.name}/third-party/Glad/include",
-		"%{prj.name}/third-party/glm/glm",
-		"%{prj.name}/third-party/spdlog/include"
+		"%{prj.name}/third-party/spdlog/include",
+		"%{prj.name}/third-party/GLFW/include",
+		"%{prj.name}/third-party/glm/"
 	}
+
+	defines { "_CRT_SECURE_NO_WARNINGS" }
+
 	links
 	{
 		"GLFW",
-		"GLAD"
+		"GLAD",
+		"opengl32.lib"
 	}
 
-	filter "system:Windows"
-		cppdialect "C++17"
+	postbuildcommands
+	{
+		("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputDir .. "/Test/\"")
+	}
+
+	filter "system:windows"
 		systemversion "latest"
+		linkoptions "/NODEFAULTLIB:libcmt.lib"
+		
 		defines
 		{
 			"A9_PLATFORM_WINDOWS",
-			"A9_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
 		}
-		links { "opengl32.lib" }
-		postbuildcommands
-		{
-			-- Copying the (Dynamic) Linked Library into the folder with the executable
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-		}
-	filter "system:Mac"
-		defines "A9_PLATFORM_MAC"
-	filter "system:Linux"
-		defines "A9_PLATFORM_LINUX"
-
-
 
 	filter "configurations:Debug"
-		defines "A9_DEBUG_MODE"
+		defines "A9_DEBUG"
 		runtime "Debug"
-		symbols "On"
-		optimize "Debug"
+		symbols "on"
+
 	filter "configurations:Release"
+		defines "A9_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
-
-project "Sandbox"
-	location "Sandbox"
+project "Test"
+	location "Test"
 	kind "ConsoleApp"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin/int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputDir .. "/%{prj.name}")
+	objdir ("bin/int/" .. outputDir .. "/%{prj.name}")
 
 	files
 	{
-		"%{prj.name}/src/**.h*",
-		"%{prj.name}/src/**.c*"
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
 	}
+
 	includedirs
 	{
-		"%{prj.name}/src",
-		"Alpha-9/core",
-		"Alpha-9/platform",
-		"Alpha-9/third-party/Glad/include",
-		"Alpha-9/third-party/spdlog/include"
+		"Alpha9/core",
+		"Alpha9/main",
+		"Alpha9/platform",
+		"Alpha9/third-party/Glad/include",
+		"Alpha9/third-party/spdlog/include",
+		"Alpha9/third-party/GLFW/include",
+		"Alpha9/third-party/glm/"
 	}
+
 	links
 	{
-		"Alpha-9"
+		"Alpha9"
 	}
 
-
-	filter "system:Windows"
-		cppdialect "C++17"
+	filter "system:windows"
 		systemversion "latest"
-		defines "A9_PLATFORM_WINDOWS"
-	filter "system:Mac"
-		defines "A9_PLATFORM_MAC"
-
-	filter "system:Linux"
-		defines "A9_PLATFORM_LINUX"
-
-
+		linkoptions "/NODEFAULTLIB:libcmt.lib"
+		 
+		defines
+		{
+			"A9_PLATFORM_WINDOWS"
+		}
 
 	filter "configurations:Debug"
-		defines "A9_DEBUG_MODE"
+		defines "A9_DEBUG"
 		runtime "Debug"
-		symbols "On"
-		optimize "Debug"
+		symbols "on"
+
 	filter "configurations:Release"
+		defines "A9_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="core">
+      <UniqueIdentifier>{4E40957C-3A77-960D-E363-7C10CF79120F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\events">
+      <UniqueIdentifier>{92DC566A-FE91-CF5F-8786-C936F33AC663}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\logger">
+      <UniqueIdentifier>{7D462D7A-E9FB-A56F-72F0-9F46DEA49C73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\rendering">
+      <UniqueIdentifier>{3B63E6A1-2731-DAA7-10C5-4ACEFC31B60C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{6A7F9A7C-56B6-9B0D-FFA2-8110EBB8170F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{4A63C33C-3630-1E48-5F49-0CF04B7553D6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\openGL">
+      <UniqueIdentifier>{5E49BFD0-CAD4-2C95-D3E5-AF893FF08895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\windows">
+      <UniqueIdentifier>{A44FC440-9048-E392-B97A-C817A5D2C29E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="core\a9pch.hpp">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\application.hpp">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\events\events.hpp">
+      <Filter>core\events</Filter>
+    </ClInclude>
+    <ClInclude Include="core\events\input_events.inl">
+      <Filter>core\events</Filter>
+    </ClInclude>
+    <ClInclude Include="core\events\window_events.inl">
+      <Filter>core\events</Filter>
+    </ClInclude>
+    <ClInclude Include="core\key_codes.inl">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\logger\logger.hpp">
+      <Filter>core\logger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\logger\logging_macros.hpp">
+      <Filter>core\logger</Filter>
+    </ClInclude>
+    <ClInclude Include="core\macros.hpp">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\buffers.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\camera.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\context.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\renderer.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\shader.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\vertex_array.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="core\rendering\window.hpp">
+      <Filter>core\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="main\Alpha9.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="main\game_base.hpp">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="main\main.hpp">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\openGL\gl_buffers.hpp">
+      <Filter>platform\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\openGL\gl_context.hpp">
+      <Filter>platform\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\openGL\gl_vertexArray.hpp">
+      <Filter>platform\openGL</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\windows\windows_input.hpp">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\windows\windows_window.hpp">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="core\transform.hpp" />
+    <ClInclude Include="core\components\component.hpp" />
+    <ClInclude Include="core\time.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="core\a9pch.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\application.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="core\events\events.cpp">
+      <Filter>core\events</Filter>
+    </ClCompile>
+    <ClCompile Include="core\logger\logger.cpp">
+      <Filter>core\logger</Filter>
+    </ClCompile>
+    <ClCompile Include="core\rendering\buffers.cpp">
+      <Filter>core\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="core\rendering\camera.cpp">
+      <Filter>core\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="core\rendering\renderer.cpp">
+      <Filter>core\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="core\rendering\shader.cpp">
+      <Filter>core\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="core\rendering\vertex_array.cpp">
+      <Filter>core\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="core\rendering\window.cpp">
+      <Filter>core\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\openGL\gl_buffers.cpp">
+      <Filter>platform\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\openGL\gl_context.cpp">
+      <Filter>platform\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\openGL\gl_vertexArray.cpp">
+      <Filter>platform\openGL</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\windows\windows_input.cpp">
+      <Filter>platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\windows\windows_window.cpp">
+      <Filter>platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="core\transform.cpp" />
+    <ClCompile Include="core\components\component.cpp" />
+    <ClCompile Include="core\time.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="main\Alpha9">
+      <Filter>main</Filter>
+    </None>
+    <None Include="core\events\core_events.inl" />
+  </ItemGroup>
+</Project>

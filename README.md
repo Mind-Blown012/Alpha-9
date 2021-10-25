@@ -1,2 +1,2 @@
 # Alpha 9
-*Alpha 9* is a cross-platform, multi-threaded game engine which is lightweight and portable.
+A simple and lightweight game-engine that runs reliably and fast. It supports 2D and 3D graphics and multi-platform support including builds for Windows, Linux, MacOS, and possibly later build support for IOS and Android. The only graphics API currently supported is OpenGL, but DirectX/Direct3D and Vulkan may be supported in later releases.
