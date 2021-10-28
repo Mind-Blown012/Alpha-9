@@ -21,12 +21,12 @@ namespace Alpha9
 		glClearColor(s_clearColor.r, s_clearColor.g, s_clearColor.b, s_clearColor.a);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
-
-	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray)
+	static bool printed = false;
+	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const Transform& transform)
 	{
 		shader->Bind();
-		shader->UploadUniformMat4("u_viewProjectionMatrix", Camera::GetMainCamera()->GetViewProjectionMatrix());
-		
+		// A combination of the model, view, and projection matricies, multiplied with each other on the cpu to increase efficiency.
+		shader->UploadUniformMat4("u_MVPmatrix", transform.GetModelMatrix() * Camera::GetMainCamera()->GetViewProjectionMatrix());
 		vertexArray->Bind();
 		DrawIndexed(vertexArray);
 	}

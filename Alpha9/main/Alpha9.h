@@ -25,6 +25,7 @@
 #include "rendering/context.hpp"
 #include "rendering/renderer.hpp"
 #include "rendering/vertex_array.hpp"
+#include "rendering/camera.hpp"
 #ifdef A9_PLATFORM_WINDOWS
 	#include "openGL/gl_context.hpp"
 	#include "openGL/gl_buffers.hpp"

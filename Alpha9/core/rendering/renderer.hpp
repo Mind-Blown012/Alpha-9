@@ -4,6 +4,7 @@
 #include "shader.hpp"
 #include "macros.hpp"
 #include "shader.hpp"
+#include "transform.hpp"
 
 #include <memory>
 
@@ -25,7 +26,7 @@ namespace Alpha9
 		inline static void SetClearColor(const glm::vec4& clearColor) { s_clearColor = clearColor; }
 		static void Clear();
 
-		static void Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray);
+		static void Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertexArray, const Transform& transform);
 		static void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray);
 	private:
 		static RenderAPI s_renderAPI;

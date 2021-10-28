@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 {
 	using namespace Alpha9;
 	
-	Time::init();
+	Time::Init();
 
 	Game* g = CreateGame();
 	g->Awake();

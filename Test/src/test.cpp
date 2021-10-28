@@ -29,12 +29,12 @@ public:
 			
 			out vec4 vertexColor;
 
-			uniform mat4 u_viewProjectionMatrix;
+			uniform mat4 u_MVPmatrix;
 			
 			in vec3 vp;
 			void main()
 			{
-				gl_Position = u_viewProjectionMatrix * vec4(aPos, 1.0);
+				gl_Position = u_MVPmatrix * vec4(aPos, 1.0);
 				vertexColor = vec4(1.0, 0.0, 0.0, 1.0);
 			}
 		)";
@@ -55,14 +55,16 @@ public:
 
 	void Update() override
 	{
-		if (Input::GetKeyDown(KeyCode::W))
-			A9_INFO("W was pressed!");
-		if (Input::GetKeyDown(KeyCode::A))
-			A9_INFO("A was pressed!");
-		if (Input::GetKeyDown(KeyCode::S))
-			A9_INFO("S was pressed!");
-		if (Input::GetKeyDown(KeyCode::D))
-			A9_INFO("D was pressed!");
+		float speed = 0.5f;
+
+		if (Input::GetKey(KeyCode::W))
+			trianglePos.Translate(glm::vec3(0.0f, 1.0f, 0.0f) * speed * Time::GetDeltaTime());
+		if (Input::GetKey(KeyCode::A))
+			trianglePos.Translate(glm::vec3(-1.0f, 0.0f, 0.0f) * speed * Time::GetDeltaTime());
+		if (Input::GetKey(KeyCode::S))
+			trianglePos.Translate(glm::vec3(0.0f, -1.0f, 0.0f) * speed * Time::GetDeltaTime());
+		if (Input::GetKey(KeyCode::D))
+			trianglePos.Translate(glm::vec3(1.0f, 0.0f, 0.0f) * speed * Time::GetDeltaTime());
 
 		if (Input::GetKeyDown(KeyCode::T))
 			A9_INFO(Time::getTime());
@@ -70,13 +72,16 @@ public:
 
 	void Render() override
 	{
-		Renderer::Submit(m_shader, vertArray);
+		//trianglePos.SetRotation(0.0f, 0.0f, sin(Time::getTime()) * 45);
+		//A9_TRACE(sin(Time::getTime()) * 10.0f);
+		Renderer::Submit(m_shader, vertArray, trianglePos);
 	}
 private:
 	std::shared_ptr<VertexArray> vertArray;
 	std::shared_ptr<VertexBuffer> vertBuffer;
 	std::shared_ptr<IndexBuffer> indexBuffer;
 	std::shared_ptr<Shader> m_shader;
+	Transform trianglePos = Transform();
 };
 
 Game* CreateGame()

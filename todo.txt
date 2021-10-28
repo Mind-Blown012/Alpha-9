@@ -1,4 +1,5 @@
-.\Alpha-9\core\a9pch.hpp~10: other platform support
-.\Alpha-9\core\core.hpp~15: A9_CORE_ASSERT
-.\Alpha-9\core\core.hpp~16: Logging
-.\Alpha-9\platform\linux\entrypoint.hpp~19: Cleanup main include files
+.\Alpha9\core\application.hpp~9: Make __debugbreak() cross-platform
+.\Alpha9\core\events\core_events.inl~8: Add the GameTick and PhysicsTick events
+.\Alpha9\core\rendering\camera.cpp~7: Get rid of repeated code in this file
+.\Alpha9\main\main.hpp~9: Pre-compiled header files
+.\Alpha9\third-party\spdlog\tests\catch.hpp~4312: Ideally this would be also constrained against the various char types,

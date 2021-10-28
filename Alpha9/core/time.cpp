@@ -6,10 +6,10 @@
 namespace Alpha9
 {
 	float Time::_deltaTime = 0.0f;
-	float& Time::deltaTime = Time::_deltaTime;
+	float Time::deltaTime = 0.0f;
 	float Time::startTime = 0.0f;
 
-	void Time::init()
+	void Time::Init()
 	{
 		using namespace std::chrono;
 		auto nanosSinceEpoch = duration_cast<nanoseconds>(high_resolution_clock::now().time_since_epoch());
@@ -24,12 +24,18 @@ namespace Alpha9
 		using namespace std::chrono;
 		auto nanosSinceEpoch = duration_cast<nanoseconds>(high_resolution_clock::now().time_since_epoch());
 		float currentTime = (float)((float)nanosSinceEpoch.count() / (float)1000000000);
-		A9_CORE_WARN("{}", Time::startTime);
 		return (currentTime - Time::startTime);
 	}
 
-	float Time::updateDeltaTime(float&)
+	float Time::updateDeltaTime()
 	{
-		return 0.0f;
+		if (_deltaTime == 0.0f) {
+			_deltaTime = getTime();
+			return deltaTime;
+		}
+		float time = getTime();
+		deltaTime = time - _deltaTime;
+		_deltaTime = time;
+		return deltaTime;
 	}
 }

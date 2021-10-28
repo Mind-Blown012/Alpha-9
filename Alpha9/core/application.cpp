@@ -6,6 +6,7 @@
 #include "events/events.hpp"
 #include "application.hpp"
 #include "game_base.hpp"
+#include "time.hpp"
 
 #include <glad/glad.h>
 
@@ -22,7 +23,7 @@ namespace Alpha9
 	{
 		init();
 		WindowBase::Create(*(new WindowProperties("Alpha 9 Engine", false)));
-		Camera::s_mainCamera.reset(new Camera(glm::vec3(0.0f, 0.0f, -5.0f), 0.0f, false));
+		Camera::s_mainCamera.reset(new Camera(glm::vec3(0.0f, 0.0f, 4.0f), glm::vec3(), false));
 	}
 
 	Application::~Application()
@@ -57,6 +58,7 @@ namespace Alpha9
 		// Main application loop
 		while (m_isRunning)
 		{
+			Time::updateDeltaTime();
 			// Resolve all events
 			GetEventManager().Resolve();
 			if (!m_isRunning) break;
